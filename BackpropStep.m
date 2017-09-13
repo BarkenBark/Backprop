@@ -36,7 +36,5 @@ function network = BackpropStep(network, dataPoint, beta, eta)
     network{2,m} = updatedThresholds;
   end
   
-  
-  
 end
 
