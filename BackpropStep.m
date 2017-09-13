@@ -26,10 +26,14 @@ function network = BackpropStep(network, dataPoint, beta, eta)
   delta{M} = gDerivative(b{M}).*(targetOutput-output{M});
   for m = flip(2:M-1)
     weights = network{1,m};
+    thresholds = network{2,m};
     delta{m} = gDerivative(b{m}).*(weights*delta{m+1});
     deltaWeights = eta*output{m}*delta{m+1}';
+    deltaThresholds = -eta*delta{m+1};
     updatedWeights = weights + deltaWeights;
+    updatedThresholds = thresholds + deltaThresholds;
     network{1,m} = updatedWeights;
+    network{2,m} = updatedThresholds;
   end
   
   

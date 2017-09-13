@@ -1,4 +1,4 @@
-function delta = BackpropStep(network, dataPoint, beta, eta)
+function network = BackpropStep(network, dataPoint, beta, eta)
 %Only accepts one data point
 
   input = dataPoint(1:2);
@@ -16,20 +16,24 @@ function delta = BackpropStep(network, dataPoint, beta, eta)
   for m=1:nbrOfMatrices
     thresholds = network{2,m};
     weights =  network{1,m};
-    b{m+1} = weights'*output-thresholds;
+    b{m+1} = weights'*output{m}-thresholds;
     output{m+1} = tanh(b{m+1}*beta);
   end
   
   
   
   %Note: Don't transpose weight matrices since mapping backwards
-  delta{M} = gDerivative(b{M}).*(targetOutput-output);
+  delta{M} = gDerivative(b{M}).*(targetOutput-output{M});
   for m = flip(2:M-1)
     weights = network{1,m};
+    thresholds = network{2,m};
     delta{m} = gDerivative(b{m}).*(weights*delta{m+1});
-    deltaWeights = eta*output{m-1}*delta{m}';
+    deltaWeights = eta*output{m}*delta{m+1}';
+    deltaThresholds = eta*delta{m+1};
     updatedWeights = weights + deltaWeights;
+    updatedThresholds = thresholds + deltaThresholds;
     network{1,m} = updatedWeights;
+    network{2,m} = updatedThresholds;
   end
   
   
