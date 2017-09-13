@@ -1,11 +1,11 @@
-function output = ForwardPropagate(network, input,beta)
+function output = ForwardPropagate(network, input, beta)
 
-nbrOfMatrixes = length(network);
+nbrOfMatrices = length(network);
 output = input;
 
-  for i=1:nbrOfMatrixes
-    thresholds = network{2,i};
-    weights =  network{1,i};
+  for m=1:nbrOfMatrices
+    thresholds = network{2,m};
+    weights =  network{1,m};
     b = weights'*output-thresholds;
     output = tanh(b*beta);
   end

@@ -1,0 +1,12 @@
+function network = TrainNetwork(network, trainData, iterations)
+
+  nbrOfDataPoints = size(trainData,1);
+  
+  
+  for i = 1:iterations
+    iDataPoint = randi(nbrOfDataPoints);
+    network = Back
+  end
+
+end
+
