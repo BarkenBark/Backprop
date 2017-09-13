@@ -7,7 +7,7 @@ function network = AsynchronouslyTrainNetwork(network, trainData, beta, eta, ite
     iDataPoint = randi(nbrOfDataPoints);
     dataPoint = trainData(:,iDataPoint);
     network = BackpropStep(network, dataPoint, beta, eta);
-    if mod(i,100)==0
+    if mod(i,10000)==0
       fprintf('Iteration %d complete.\n', i);
     end
   end

@@ -16,11 +16,11 @@ beta = 0.5;
 weightInterval = [-.2 .2];
 thresholdInterval = [-1 1];
 
-NUMBER_OF_ITERATIONS = 10^3;
+NUMBER_OF_ITERATIONS = 10^5;
 
 %%
 
-networkDimensions = [2 1];
+networkDimensions = [2 4 1];
 network = InitializeNetwork(networkDimensions, weightInterval, thresholdInterval); %Returns cell of random weight matrices
 output = ForwardPropagate(network, input, beta)';
 accuracy = ValidateOutput(output, targetOutput)

@@ -14,26 +14,31 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
   output = cell(1, nbrOfMatrices + 1);
   
   %Forward propagate
-  output{1} = input
+  output{1} = input;
   for m=1:nbrOfMatrices
     thresholds = network{2,m};
-    weights =  network{1,m}
+    weights =  network{1,m};
     b{m+1} = weights'*output{m}-thresholds;
-    output{m+1} = tanh(b{m+1}*beta);
+    output{m+1} = g(b{m+1}*beta);
   end
   
   %Note: Don't transpose weight matrices since mapping backwards
   delta{M} = gDerivative(b{M}).*(targetOutput-output{M});
-  for m = flip(2:M-1)
+  for m = flip(1:M-1)
     weights = network{1,m};
     thresholds = network{2,m};
-    delta{m} = gDerivative(b{m}).*(weights*delta{m+1});
-    deltaWeights = eta*output{m}*delta{m+1}'
-    deltaThresholds = -eta*delta{m+1}
+    
+    deltaWeights = eta*output{m}*delta{m+1}';
+    deltaThresholds = -eta*delta{m+1};
     updatedWeights = weights + deltaWeights;
     updatedThresholds = thresholds + deltaThresholds;
+    
     newNetwork{1,m} = updatedWeights;
-    netNetwork{2,m} = updatedThresholds;
+    newNetwork{2,m} = updatedThresholds;
+    
+    if m>=2
+      delta{m} = (gDerivative(b{m}).*weights*delta{m+1});
+    end
   end
   
 end
