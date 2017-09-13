@@ -4,7 +4,7 @@ function accuracy = ValidateOutput( output, targetOutput )
   %accuracyVector = [output'.*targetOutput]==1; %gives vector of agreeing elements
   %accuracy = sum( accuracyVector )/length(output); %fraction of agreeing elements
 
-  accuracy = length(find(output==targetOutput))/length(output);
+  accuracy = length(find(A==B))/length(A)
   
 end
 
