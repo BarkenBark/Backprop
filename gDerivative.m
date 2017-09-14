@@ -1,6 +1,6 @@
-function val = gDerivative(x)
+function val = gDerivative(x, beta)
 
-  val = 1./(cosh(x).^2);
+  val = beta./(cosh(beta*x).^2);
 
 end
 

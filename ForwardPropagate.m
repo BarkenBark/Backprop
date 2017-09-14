@@ -7,11 +7,11 @@ output = input;
   for m=1:nbrOfMatrices
     thresholds = network{2,m};
     weights =  network{1,m};
-    b = weights'*output-thresholds;
-    output = g(b*beta);
+    b = weights*output-thresholds;
+    output = g(b, beta);
   end
 
-  output = sign(output);
+  %output = sign(output);
   
 end
 

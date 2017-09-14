@@ -15,7 +15,7 @@ function network = InitializeNetwork(networkDimensions, weightInterval, threshol
   %Initialize weight matrices and threshold vectors
   for i = 1:nbrOfMatrices
     dim = [networkDimensions(i), networkDimensions(i+1)];
-    network{1,i} = zeros(dim(1), dim(2));
+    network{1,i} = zeros(dim(2), dim(1));
     network{2,i} = zeros(dim(2),1);
   end
 

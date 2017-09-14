@@ -1,0 +1,12 @@
+Changelog Example Sheet 1.3, Tordag 14/9:
+
+Ändrar så att viktmatriserna är av av storlek (M+1)x(M) istället för (M)x(M+1).
+- InitilalizeNetwork -> bytte plats på dim(2) och dim(1) i rad 18
+- ForwardProp -> Tog bort transponat i rad 10.
+						 Ändrar temporärt output till output för debugging
+						 Unit-testade ForwardPropagate med Toy Example
+Backpropstep -> Gjorde motsvarande ändringar, samt teckenbyte på deltaWeights
+g -> Bakar in beta i funktionen som argument
+
+Main -> OH SNAP! Vi har ju normaliserat olika för tränings- respektive testdata
+			AJABAJA.

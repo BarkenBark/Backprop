@@ -37,7 +37,7 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
     newNetwork{2,m} = updatedThresholds;
     
     if m>=2
-      delta{m} = gDerivative(b{m}, beta).*(weights'*delta{m+1});
+      delta{m} = gDerivative(b{m},).*(weights'*delta{m+1});
     end
   end
   

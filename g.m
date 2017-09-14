@@ -1,6 +1,6 @@
-function val = g(x)
+function val = g(x, beta)
 
-  val = tanh(x);
+  val = tanh(beta*x);
 
 end
 
