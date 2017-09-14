@@ -20,7 +20,7 @@ NUMBER_OF_ITERATIONS = 10^5;
 
 %%
 
-networkDimensions = [2 4 1];
+networkDimensions = [2 4 3 5 1];
 network = InitializeNetwork(networkDimensions, weightInterval, thresholdInterval); %Returns cell of random weight matrices
 output = ForwardPropagate(network, input, beta)';
 accuracy = ValidateOutput(output, targetOutput)
