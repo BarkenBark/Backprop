@@ -1,4 +1,4 @@
-function output = ForwardPropagate(network, input, beta)
+function output = ForwardPropagate(network, input)
 
 nbrOfMatrices = size(network,2);
 input = input';
@@ -8,10 +8,8 @@ output = input;
     thresholds = network{2,m};
     weights =  network{1,m};
     b = weights*output-thresholds;
-    output = g(b, beta);
+    output = g(b);
   end
-
-  %output = sign(output);
   
 end
 

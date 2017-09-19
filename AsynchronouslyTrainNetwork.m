@@ -1,4 +1,4 @@
-function network = AsynchronouslyTrainNetwork(network, trainData, beta, eta, iterations)
+function network = AsynchronouslyTrainNetwork(network, trainData, iterations)
 
   nbrOfDataPoints = size(trainData,1);
   trainData = trainData';
@@ -7,7 +7,7 @@ function network = AsynchronouslyTrainNetwork(network, trainData, beta, eta, ite
   for i = 1:iterations
     iDataPoint = randi(nbrOfDataPoints);
     dataPoint = trainData(:,iDataPoint);
-    network = BackpropStep(network, dataPoint, beta, eta);
+    network = BackpropStep(network, dataPoint);
     if mod(i,iterations/10)==0
       t = toc(t);
       fprintf('Iteration %d complete after %.2f seconds..\n', i, t);

@@ -1,4 +1,6 @@
-function val = g(x, beta)
+function val = g(x)
+
+  global beta
 
   val = tanh(beta*x);
 

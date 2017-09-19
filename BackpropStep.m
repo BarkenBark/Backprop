@@ -1,5 +1,7 @@
-function newNetwork = BackpropStep(network, dataPoint, beta, eta)
+function newNetwork = BackpropStep(network, dataPoint)
 %Only accepts one data point
+
+  global eta
 
   newNetwork = cell(size(network));
 
@@ -19,12 +21,12 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
     thresholds = network{2,m};
     weights =  network{1,m};
     b{m+1} = weights*output{m}-thresholds;
-    output{m+1} = g(b{m+1}, beta);
+    output{m+1} = g(b{m+1});
   end
   
   %Backpropagate
   %Note: Don't transpose weight matrices since mapping backwards
-  delta{M} = -gDerivative(b{M}, beta).*(targetOutput-output{M});
+  delta{M} = -gDerivative(b{M}).*(targetOutput-output{M});
   for m = flip(1:M-1)
     weights = network{1,m};
     thresholds = network{2,m};
@@ -38,7 +40,7 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
     newNetwork{2,m} = updatedThresholds;
     
     if m>=2
-      delta{m} = gDerivative(b{m}, beta).*(weights'*delta{m+1});
+      delta{m} = gDerivative(b{m}).*(weights'*delta{m+1});
     end
   end
   

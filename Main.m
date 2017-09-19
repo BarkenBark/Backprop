@@ -13,6 +13,7 @@ validData = allData((nbrOfTrainingPoints+1):end,:);
 input = validData(:,1:2);
 targetOutput = validData(:,3); 
 
+global eta beta
 eta = 0.02;
 beta = 1;
 
@@ -31,9 +32,9 @@ for iRun = 1:NUMBER_OF_RUNS
   networkDimensions = [2 4 1];
   network = InitializeNetwork(networkDimensions, weightInterval, thresholdInterval); %Returns cell of random weight matrices
 
-  newNetwork = AsynchronouslyTrainNetwork(network, trainData, beta, eta, ...
+  newNetwork = AsynchronouslyTrainNetwork(network, trainData, ...
     NUMBER_OF_ITERATIONS); %Update weight matrices
-  output = ForwardPropagate(newNetwork, input, beta)';
+  output = ForwardPropagate(newNetwork, input)';
   error = ValidateOutput(targetOutput, output);
 
   fprintf(strcat('Run %d complete. Classification error on', ...
