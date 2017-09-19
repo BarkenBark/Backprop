@@ -22,6 +22,7 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
     output{m+1} = g(b{m+1}, beta);
   end
   
+  %Backpropagate
   %Note: Don't transpose weight matrices since mapping backwards
   delta{M} = -gDerivative(b{M}, beta).*(targetOutput-output{M});
   for m = flip(1:M-1)
@@ -37,9 +38,11 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
     newNetwork{2,m} = updatedThresholds;
     
     if m>=2
-      delta{m} = gDerivative(b{m},).*(weights'*delta{m+1});
+      delta{m} = gDerivative(b{m}, beta).*(weights'*delta{m+1});
     end
   end
+  
+  %Plot energ
   
 end
 

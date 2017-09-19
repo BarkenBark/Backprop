@@ -22,6 +22,7 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
     output{m+1} = g(b{m+1}, beta);
   end
   
+  %Backpropagate
   %Note: Don't transpose weight matrices since mapping backwards
   delta{M} = -gDerivative(b{M}, beta).*(targetOutput-output{M});
   for m = flip(1:M-1)
