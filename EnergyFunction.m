@@ -1,7 +1,7 @@
-function [ output_args ] = EnergyFunction(targetOutput, output)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+function energy = EnergyFunction(targetOutput, output)
+%Returns the energy of the current output
 
+  energy = 1/2 * sum((targetOutput - output).^2);
 
 end
 
