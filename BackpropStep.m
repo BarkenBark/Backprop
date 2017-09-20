@@ -10,7 +10,7 @@ function newNetwork = BackpropStep(network, dataPoint, beta, eta)
   M = nbrOfMatrices + 1;
 
   delta = cell(1, nbrOfMatrices + 1);
-  b = cell(1, nbrOfMatrices + 1);
+  b = cell(1, nbrOfMatrices + 1); %Note: b{1} never used
   output = cell(1, nbrOfMatrices + 1);
   
   %Forward propagate
