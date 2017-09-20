@@ -10,8 +10,6 @@ output = input;
     b = weights*output-thresholds;
     output = g(b, beta);
   end
-
-  %output = sign(output);
   
 end
 

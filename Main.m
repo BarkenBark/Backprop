@@ -27,11 +27,11 @@ NUMBER_OF_RUNS = 1;
 for iRun = 1:NUMBER_OF_RUNS
   fprintf('Commencing run %d.\n', iRun)
   
-  networkDimensions = [2 4 1];
+  networkDimensions = [2 1];
   network = InitializeNetwork(networkDimensions, weightInterval, thresholdInterval); %Returns cell of random weight matrices
 
-  newNetwork = AsynchronouslyTrainNetwork(network, trainData, beta, eta, ...
-    NUMBER_OF_ITERATIONS); %Update weight matrices
+  [newNetwork, energy] = AsynchronouslyTrainNetwork(network, trainData, validData, ...
+    beta, eta, NUMBER_OF_ITERATIONS); %Update weight matrices
   output = ForwardPropagate(newNetwork, input, beta)';
   error = ValidateOutput(targetOutput, output);
 
@@ -39,3 +39,5 @@ for iRun = 1:NUMBER_OF_RUNS
     ' validation set: %d.\n Press space to continue.\n'), iRun, error);
   pause
 end
+
+
