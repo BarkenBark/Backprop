@@ -16,7 +16,6 @@ targetOutput = validData(:,3);
 eta = 0.02;
 beta = 1;
 
-
 weightInterval = [-.2 .2];
 thresholdInterval = [-1 1];
 
